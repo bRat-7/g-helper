@@ -1,4 +1,4 @@
-﻿using GHelper.Gpu;
+using GHelper.Gpu;
 using GHelper.Helpers;
 using GHelper.Input;
 using System.Drawing.Drawing2D;
@@ -298,7 +298,7 @@ namespace GHelper.USB
                 if (delay) await Task.Delay(TimeSpan.FromSeconds(1));
                 DirectBrightness(brightness, log);
                 if (AppConfig.IsAlly()) ApplyAura();
-                
+
                 if (brightness > 0)
                 {
                     if (!backlight) initDirect = true;
@@ -712,7 +712,7 @@ namespace GHelper.USB
             static int tempWarm = AppConfig.Get("temp_warm", 65);
             static int tempHot = AppConfig.Get("temp_hot", 90);
 
-            static Color colorFreeze = ColorTranslator.FromHtml(AppConfig.GetString("color_freeze", "#0000FF")); 
+            static Color colorFreeze = ColorTranslator.FromHtml(AppConfig.GetString("color_freeze", "#0000FF"));
             static Color colorCold = ColorTranslator.FromHtml(AppConfig.GetString("color_cold", "#008000"));
             static Color colorWarm = ColorTranslator.FromHtml(AppConfig.GetString("color_warm", "#FFFF00"));
             static Color colorHot = ColorTranslator.FromHtml(AppConfig.GetString("color_hot", "#FF0000"));
@@ -779,18 +779,18 @@ namespace GHelper.USB
                     var mid_left = ColorUtils.GetMidColor(screeb_pxl.GetPixel(0, 1), screeb_pxl.GetPixel(1, 1));
                     var mid_right = ColorUtils.GetMidColor(screeb_pxl.GetPixel(2, 1), screeb_pxl.GetPixel(3, 1));
 
-                    AmbientData.Colors[4].RGB = ColorUtils.HSV.UpSaturation(screeb_pxl.GetPixel(1, 1)); // left bck
-                    AmbientData.Colors[5].RGB = ColorUtils.HSV.UpSaturation(mid_left);  // center left
-                    AmbientData.Colors[6].RGB = ColorUtils.HSV.UpSaturation(mid_right); // center right
-                    AmbientData.Colors[7].RGB = ColorUtils.HSV.UpSaturation(screeb_pxl.GetPixel(3, 1)); // right bck
+                    AmbientData.Colors[4].RGB = ColorUtils.UpSaturation(screeb_pxl.GetPixel(1, 1)); // left bck
+                    AmbientData.Colors[5].RGB = ColorUtils.UpSaturation(mid_left);  // center left
+                    AmbientData.Colors[6].RGB = ColorUtils.UpSaturation(mid_right); // center right
+                    AmbientData.Colors[7].RGB = ColorUtils.UpSaturation(screeb_pxl.GetPixel(3, 1)); // right bck
 
                     for (int i = 0; i < 4; i++) // keyboard
-                        AmbientData.Colors[i].RGB = ColorUtils.HSV.UpSaturation(screeb_pxl.GetPixel(i, 0));
+                        AmbientData.Colors[i].RGB = ColorUtils.UpSaturation(screeb_pxl.GetPixel(i, 0));
                 }
                 else
                 {
                     zones = 1;
-                    AmbientData.Colors[0].RGB = ColorUtils.HSV.UpSaturation(ColorUtils.GetDominantColor(screeb_pxl), (float)0.3);
+                    AmbientData.Colors[0].RGB = ColorUtils.UpSaturation(ColorUtils.GetDominantColor(screeb_pxl), 0.3f);
                 }
 
                 //screen_low.Save("big.jpg", ImageFormat.Jpeg);
