@@ -1,7 +1,6 @@
 using System;
 using System.Drawing;
 using System.Runtime.CompilerServices;
-
 namespace GHelper.Helpers
 {
     public class ColorUtils
