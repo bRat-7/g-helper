@@ -100,6 +100,15 @@ namespace GHelper.Helpers
             }
         }
 
+        // UpSaturation: Renk doygunluğunu artırır (default 0.1f)
+        public static Color UpSaturation(Color color, float step = 0.1f)
+        {
+            float h, s, v;
+            RGBtoHSV(color, out h, out s, out v);
+            s = Math.Min(1.0f, s + step);
+            return HSVtoRGB(h, s, v);
+        }
+
         // HSV sınıfı (isteğe bağlı, şu an boş tutabilirsin)
         public class HSV
         {
@@ -157,3 +166,4 @@ namespace GHelper.Helpers
         }
     }
 }
+
